@@ -1,0 +1,10 @@
+if [ $CODESPACES ]
+  echo "Setup dotfiles for codespaces..."
+  cd $HOME
+  git clone --no-checkout https://github.com/cpruitt/dotfiles.git $HOME/.dotfiles.git
+  cd $HOME/.dotfiles.git
+  git config core.worktree "$HOME"
+  git config core.sparseCheckout true
+  git checkout main
+then
+fi
