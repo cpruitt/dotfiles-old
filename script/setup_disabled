@@ -1,10 +1,16 @@
 if [ $CODESPACES ]
+then
   echo "Setup dotfiles for codespaces..."
+
+  # Move codespaces default dotfiles
   cd $HOME
+  mv .bashrc{,.codespaces_default}
+  mv .profile{,.codespaces_default}
+
+  # Get a new copy of our dotfiles (they need to be in $HOME)
   git clone --no-checkout https://github.com/cpruitt/dotfiles.git $HOME/.dotfiles.git
   cd $HOME/.dotfiles.git
   git config core.worktree "$HOME"
   git config core.sparseCheckout true
   git checkout main
-then
 fi
