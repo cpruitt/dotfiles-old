@@ -17,7 +17,15 @@ fi
 
 export XDG_CONFIG_HOME=${HOME:?}/.config
 
-for config in "${XDG_CONFIG_HOME:?}"/bashrc.d/*.sh{,.local} ~/.bashrc; do
+for config in "${XDG_CONFIG_HOME:?}"/bashrc.d/*.sh{,.local}; do
   test -r "$config" && . "$config"
 done
 unset config
+
+# Flag that profile has been sourced. This
+# is so that .bashrc can source it for non-longin
+# shells (e.g. codespaces) without an infinate loop.
+export INIT_PROFILE_WAS_SOURCED=true
+test -r ~/.bashrc && . ~/.bashrc
+
+

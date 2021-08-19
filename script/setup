@@ -1,6 +1,6 @@
-if [ $CODESPACES ]
+if [ -n "${CODESPACES}" ]
 then
-  echo "Setup dotfiles for codespaces..."
+  sudo chsh -s $(which bash) $(whoami)
 
   # Move codespaces default dotfiles
   cd $HOME
